@@ -3,11 +3,13 @@ import { createStore, combineReducers } from "redux";
 import { NavigationReducers } from "./NavigationReducers";
 import { LocationReducers } from "./LocationReducers";
 import { UserReducers } from "./UserReducers";
+import { NodeReducers } from "./NodeReducers";
 
 const allReducers = combineReducers({
   user: UserReducers,
   navigation: NavigationReducers,
   location: LocationReducers,
+  node: NodeReducers,
 });
 
 // const persistedReducer = persistReducer(persistConfig, allReducers);

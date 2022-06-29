@@ -1,12 +1,14 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { ScrollView, Heading, Center, VStack } from "native-base";
 
 import Card from "../../components/Card";
 import TopBar from "../../components/TopBar";
 import { useParentQuery } from "../../reduxStore/Locations";
+import { RefreshControl } from "react-native";
 
 function ParentScreen({ navigation }) {
-  const { ParentData } = useParentQuery();
+  const [refreshing, setRefreshing] = useState(false);
+  const { ParentData, ParentRefetch } = useParentQuery();
 
   const data = useMemo(() => {
     if (Array.isArray(ParentData?.parents)) {
@@ -14,6 +16,13 @@ function ParentScreen({ navigation }) {
     }
     return [];
   }, [ParentData]);
+  
+  const onRefresh = () => {
+    setRefreshing(true);
+    ParentRefetch().then(() => {
+      setRefreshing(false);
+    });
+  };
 
   return (
     <React.Fragment>
@@ -29,6 +38,9 @@ function ParentScreen({ navigation }) {
           mb: "10",
           minW: "72",
         }}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         mb="2"
       >
         <VStack space={3}>

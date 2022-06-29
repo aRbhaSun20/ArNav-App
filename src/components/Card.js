@@ -14,7 +14,7 @@ import React from "react";
 import { Image } from "react-native";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-function Card({ imgSrc, type, name, userName, desc, dist, qr }) {
+function Card({ imgSrc, type, name, userName, desc, dist, qr, execute }) {
   return (
     <Box alignItems="center">
       <Box
@@ -86,7 +86,7 @@ function Card({ imgSrc, type, name, userName, desc, dist, qr }) {
             {qr && (
               <IconButton
                 onPress={() => {
-                  // toggleDrawer();
+                  execute();
                 }}
                 icon={
                   <Icon

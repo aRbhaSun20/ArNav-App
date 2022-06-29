@@ -12,6 +12,7 @@ import Profile from "./Screens/Profile/Profile";
 import TopBar from "./components/TopBar";
 import NodeScreen from "./Screens/Nodes/NodeScreen";
 import LocationScreen from "./Screens/Location/LocationScreen";
+import MapScreen from "./Screens/Maps/MapScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,11 @@ function Routes() {
           name="Locations"
           options={{ headerShown: false }}
           component={LocationScreen}
+        />
+        <Drawer.Screen
+          name="Maps"
+          options={{ headerShown: false }}
+          component={MapScreen}
         />
       </Drawer.Navigator>
     </NavigationContainer>

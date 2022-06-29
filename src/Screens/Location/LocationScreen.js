@@ -1,12 +1,14 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { ScrollView, Heading, Center, VStack } from "native-base";
 
 import Card from "../../components/Card";
 import TopBar from "../../components/TopBar";
 import { useLocationQuery } from "../../reduxStore/Locations";
+import { RefreshControl } from "react-native";
 
 function LocationScreen({ navigation }) {
-  const { LocationData } = useLocationQuery();
+  const [refreshing, setRefreshing] = useState(false);
+  const { LocationData, LocationRefetch } = useLocationQuery();
 
   const data = useMemo(() => {
     if (Array.isArray(LocationData?.locations)) {
@@ -14,6 +16,13 @@ function LocationScreen({ navigation }) {
     }
     return [];
   }, [LocationData]);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    LocationRefetch().then(() => {
+      setRefreshing(false);
+    });
+  };
 
   return (
     <React.Fragment>
@@ -29,6 +38,9 @@ function LocationScreen({ navigation }) {
           mb: "10",
           minW: "72",
         }}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         mb="2"
       >
         <VStack space={3}>
