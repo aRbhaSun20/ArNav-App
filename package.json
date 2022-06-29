@@ -36,7 +36,7 @@
     "redux-thunk": "^2.4.1",
     "expo-barcode-scanner": "~11.3.0",
     "expo-sensors": "~11.3.0",
-    "react-native-maps": "0.30.2"
+    "react-native-maps": "https://github.com/react-community/react-native-maps.git"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
