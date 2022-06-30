@@ -4,7 +4,7 @@ import { Image, StyleSheet } from "react-native";
 
 const Logo = () => (
   <>
-    <Image source={require("../assets/logo.png")} style={styles.image} />
+    <Image source={require("../assets/login.png")} style={styles.image} />
   </>
 );
 
